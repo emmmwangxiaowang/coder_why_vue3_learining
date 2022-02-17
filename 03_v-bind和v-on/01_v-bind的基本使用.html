@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .active {
+            color: aqua;
+        }
+        
+        button {
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <!-- vue3 中 template 里面可以有多个gen元素 -->
+        <img :src="imgurl" alt="">
+        <a :href="link" >就是就是</a>
+
+        <!-- 对象语法 -->
+        <div :class="{'active':flag,'title':true}" >1111</div>
+        <!-- 将对象放到一个单独的属性中 -->
+        <div :class="classObj" >2222</div>
+        <!-- 数组中可以将其中的元素解析为data中的数据 -->
+        <div :class="[head,'abc']" >3333</div>
+        <div :class="[head,'abc',{cls:flag,Active:!flag}]" >4444</div>
+        <!-- 默认class 和 动态class 结合 -->
+        <div class="moren" :class="{'active':flag,'title':true}" >5555</div>
+        <button @click="change" vaue="切换"></button>
+
+<br>
+<br>
+<br>
+<br>
+        <div :style="{color:finalColor,'font-size':'20px'}">styleeeee</div>
+        <div :style="{color:finalColor,'font-size':finalFontSize + 15 +'px'}">styleeeee</div>
+        <div :style="finalStyleObj">对象</div>
+        <div :style="getStyle()">方法</div>
+
+        <!-- 数组 -->
+        <div :style="[finalStyleObj,style01]">数组</div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    imgurl: '',
+                    cls: '',
+                    link: "https://www.baidu.com",
+                    flag: true,
+                    head: 'emmm',
+                    Active: 'Active',
+                    inactive: '',
+                    classObj: {
+                        'active': true,
+                        'title': true
+                    },
+                    finalColor: 'red',
+                    finalFontSize: 15,
+                    finalStyleObj: {
+                        'font-size': '50px',
+                        fontWeight: 300,
+                        backgroundColor: 'cyan'
+                    },
+                    style01: {
+                        textDecoration: "underline"
+                    }
+
+                }
+            },
+            methods: {
+                change() {
+                    this.flag = !this.flag
+                },
+                getStyle() {
+                    return this.finalStyleObj
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>

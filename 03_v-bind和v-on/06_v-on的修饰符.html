@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <div @click="divClick">
+            <!-- 阻止事件冒泡 -->
+            <button @click.stop="btnClick"></button>
+        </div>
+
+        <!--                 支持链式编程 -->
+        <!-- 如果直接绑定 keyup 事件 呢么所有的按键抬起都会触发绑定事件 -->
+        <input type="text" @keyup.enter.space="enterKeyup">
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    message: ""
+                }
+            },
+            methods: {
+                divClick() {
+                    console.log('div')
+                },
+                btnClick() {
+                    console.log('btn')
+                },
+                enterKeyup(event) {
+                    console.log('key')
+                    console.log(event)
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>
