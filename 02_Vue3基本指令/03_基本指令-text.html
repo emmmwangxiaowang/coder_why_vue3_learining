@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <h2>{{message}}</h2>
+        <!-- 是啥就是啥 -->
+        <h2 v-text="message"></h2>
+
+        <!-- 解析字符串为html元素--如果有 -->
+        <div v-html="msg"></div>
+
+        <!-- 不编译该节点 加快编译速度 -->
+        <h2 v-pre>{{message}}</h2>
+
+        <!-- 当网速慢的时候 会展示出没有解析的mustache---{{message}}  -->
+        <!-- 在模板没有解析之前使该节点多一个属性 v-clock display:none -->
+        <!-- 编译出来之后会去掉 该属性 -->
+        <h2 v-clock>{{message}}</h2>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    message: "emmm",
+                    msg: "<span>就是就是</span>"
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>
