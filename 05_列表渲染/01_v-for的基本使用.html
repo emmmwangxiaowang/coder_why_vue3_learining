@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+
+        <!-- 遍历数组 -->
+        <ul v-for="(item,index) in movies" :key="item.id">
+            <li :style="[disp,bg]">{{item.name}}</li>
+        </ul>
+
+        <h2>个人信息</h2>
+        <ul>
+            <!-- 遍历对象 -->
+            <li v-for="(item,index,key) in info" ::key="index" :style="[disp,bg]">{{item}}--{{index}}---{{key}}</li>
+        </ul>
+
+        <h2>遍历数字</h2>
+        <ul v-for="(item,index,key) in 10 " :style="[disp,bg]">
+            <!-- 没有key 的 默认为空 -->
+            <li>{{item}}--{{index}}--{{key}}</li>
+        </ul>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    movies: [{
+                        name: "星际穿越",
+                        id: 1
+                    }, {
+                        name: "盗梦空间",
+                        id: 2
+                    }, {
+                        name: "教父",
+                        id: 3
+                    }, {
+                        name: "让子弹飞",
+                        id: 4
+                    }, {
+                        name: "大话西游",
+                        id: 5
+                    }],
+                    bg: {
+                        backgroundColor: 'cyan'
+                    },
+                    disp: {},
+                    info: {
+                        name: "王小王",
+                        age: 21,
+                        height: 160
+                    }
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>

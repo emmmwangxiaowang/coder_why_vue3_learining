@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+
+        <!-- 遍历数组 -->
+        <!-- key 属性有什么作用? -->
+        <!-- key 属性主要用在Vue 的虚拟DOM算法--diff算法, 在 新旧 nodes 对比时 辨识 VNodes -->
+        <!-- 如果不适用key, Vue 会使用以中国最大限度减少动态元素并且尽可能的尝试就地 修改/复用相同类型元素的算法 -->
+        <!-- 而 使用key 时, 它会基于 key 的变化 重新排列元素顺序, 并且会 移除/销毁 key不存在的元素 -->
+        <ul v-for="(item,index) in movies" :key="item.id">
+            <li :style="[disp,bg]">{{item.id}}--{{item.name}}</li>
+        </ul>
+        <input type="text" v-model="newMovie">
+        <button @click="addMovie">添加电影</button>
+
+    </template>
+    <!-- 认识 VNode -->
+    <!-- VNode 的全称是 Virual Node, 也就是虚拟节点; -->
+    <!-- 事实上, 无论是组件还是元素, 它们最终在Vue中表示出来的都是一个个 VNode -->
+    <!-- VNode 本质上是一个 js对象 -->
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    newMovie: '',
+                    movies: [{
+                        name: "星际穿越",
+                        id: 1
+                    }, {
+                        name: "盗梦空间",
+                        id: 2
+                    }, {
+                        name: "教父",
+                        id: 3
+                    }, {
+                        name: "让子弹飞",
+                        id: 4
+                    }, {
+                        name: "大话西游",
+                        id: 5
+                    }],
+                    bg: {
+                        backgroundColor: 'cyan'
+                    },
+                    disp: {},
+
+                }
+            },
+            methods: {
+                addMovie() {
+                    // unshift 是在队头添加
+                    // 在队尾添加
+                    this.movies.push({
+                        name: this.newMovie,
+                        id: this.movies.length + 1
+
+                    });
+                    // filter 不会直接改变数组, 需要用数组保存改变后的结果
+                    // 想要啥结果, 就在() 中写啥
+                    this.movies = this.movies.filter(item => item.id > 2)
+                    console.log(this.movies)
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>

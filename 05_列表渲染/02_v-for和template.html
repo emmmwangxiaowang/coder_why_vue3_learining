@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <ul>
+            <template v-for="(item,key) in info">
+                <li :style="bg">{{key}}</li><br>
+                <li :style="bg">{{item}}</li>
+                <br> 
+                
+                
+               
+            </template>
+    </ul>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    info: {
+                        name: '王小王',
+                        age: 21,
+                        heigth: 160
+                    },
+                    bg: {
+                        backgroundColor: 'cyan'
+                    },
+
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>
