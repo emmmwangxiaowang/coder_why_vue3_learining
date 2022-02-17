@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <!-- 当 isShow为false 时 元素不会出现在DOM中 -->
+        <h2 v-if="isShow">wangxiaowang</h2>
+        <!-- v-show 不支持和template一起使用-->
+        <!-- v-show 也不可以和 v-else 一起使用-->
+        <!-- v-show 元素无论是否需要显示到浏览器上, 它的DOM实际都是有渲染的, 只是通过 css 的 display 属性来进行切换 -->
+        <h2 v-show="isShow">emmm</h2>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    message: "",
+                    isShow: false
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>
