@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        //对象是引用类型
+        // const info = {
+        //     name: 'wang',
+        //     age: 20
+        // }
+        // const obj = info;
+        // info.name = 'kobe';
+        // console.log(obj.name)
+    </script>
+
+    <!-- 对象的浅拷贝 -->
+    <script>
+        // const info = {
+        //     name: 'wang',
+        //     age: 20
+        // }
+        // const obj = Object.assign({}, info);
+        // info.name = 'kobe'
+        // console.log(obj.name)
+    </script>
+
+    <!-- 对象的深拷贝 -->
+    <script>
+        const info = {
+            name: 'wang',
+            age: 20,
+            friends: {
+                name: 'jiang'
+            }
+        }
+        const obj = JSON.parse(JSON.stringify(info))
+        info.friends.name = 'man'
+        console.log(obj.friends.name)
+    </script>
+</body>
+
+</html>

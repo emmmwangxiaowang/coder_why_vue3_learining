@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+<!-- 1.绑定 textarea -->
+        <label for="intro">
+            介绍:
+            <textarea name="intro" id="intro" cols="30" rows="10" v-model="intro"></textarea>
+        </label>
+        <h2>intro: {{intro}}</h2>
+
+        <!-- 2.checkbox -->
+        <label for="agree">
+            <input type="checkbox" id="agree" v-model="isAgree"> 同意
+        </label>
+        <h2>isAgree: {{isAgree}}</h2>
+        
+        <!-- 2.1 多选框 -->
+        <label for="football">
+            <input type="checkbox" value="football" id="football" v-model="hobbies"> 篮球
+        </label>
+        <label for="basketball">
+            <input type="checkbox" value="basketball" id="basketball" v-model="hobbies"> 足球
+        </label>
+        <label for="tennis">
+            <input type="checkbox" value="tennis" id="tennis" v-model="hobbies"> 网球
+        </label>
+        <h2>hobbies: {{hobbies}}</h2>
+
+        <span>性别</span>
+        <label for="male">
+            <input type="radio" id="male" v-model="gender" value="male">
+        </label>
+        <label for="female">
+            <input type="radio" id="female" v-model="gender" value="female">
+        </label>
+        <h2>gender: {{gender}}</h2>
+
+        <!-- select -->
+        <span>水果:</span>
+        <select v-model="fruit" multiple size="2">
+            <option value="apple">苹果</option>
+            <option value="orange">橘子</option>
+            <option value="banana">香蕉</option>
+        </select>
+        <h2>fruit: {{fruit}}</h2>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    intro: 'Helllo World',
+                    isAgree: false,
+                    hobbies: [],
+                    gender: 'male',
+                    fruit: 'apple'
+                }
+            },
+            methods: {
+                commit() {
+                    // axios.
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>
