@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <h2>{{info}}</h2>
+        <button @click="change">改变info</button>
+        <button @click="changeName">改变info.name</button>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    info: {
+                        name: 'wangxiaowang',
+                        age: 21
+                    }
+                }
+            },
+            watch: {
+                // 默认情况下侦听器的监听只是针对数据本身, 数据内部的改变是侦听不到的
+                // info(newValue, oldValue) {
+                //     console.log(newValue)
+                // }
+                "info.name": function(newValue, oldValue) {
+                    console.log(newValue)
+                }, // 深度侦听
+                info: {
+                    handler: function(newValue, oldValue) {
+                        console.log(newValue)
+                    },
+                    // 开启对属性变化的侦听
+                    deep: true,
+                    // immedite: 立即 监听的数据渲染出来就立即监听
+                    immediate: true
+                }
+            },
+            methods: {
+                change() {
+                    this.info = {
+                        name: 'lmm'
+                    }
+                },
+                changeName() {
+                    this.info.name = 'lmm'
+                }
+            },
+            created() {
+                const unwatch = this.$watch('info', (newValue, oldValue) => {
+                    console.log(newValue, oldValue)
+                }, {
+                    deep: true,
+                    immediate: true
+                })
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>
+
+</html>
