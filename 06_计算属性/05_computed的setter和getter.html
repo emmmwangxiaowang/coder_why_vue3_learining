@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <button @click="change">修改firstName</button>
+        <h2>{{add}}</h2>
+        
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    firstName: 'kobe',
+                    lastName: 'bryant',
+                }
+            },
+            computed: {
+                // add 的 getter方法
+                // add() {
+                //     console.log('computed')
+                //     return this.firstName + '' + this.lastName
+                // },
+                add: {
+                    get: function() {
+                        return this.firstName + '' + this.lastName
+                    },
+                    set: function(NewValue) {
+                        console.log(NewValue)
+
+                    }
+                }
+            },
+            methods: {
+                change() {
+                    this.firstName = 'emmm'
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>
+
+</html>

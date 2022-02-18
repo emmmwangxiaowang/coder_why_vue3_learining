@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <button @click="change">修改firstName</button>
+        <h2>{{add}}</h2>
+        <h2>{{add}}</h2>
+        <h2>{{add}}</h2>
+        <h2>{{fullName()}}</h2>
+        <h2>{{fullName()}}</h2>
+        <h2>{{fullName()}}</h2>
+        
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    firstName: 'kobe',
+                    lastName: 'bryant',
+                    score: 10,
+                    message: 'Hello World'
+                }
+            },
+            computed: {
+                // 当我们多次使用计算属性时,计算属性指挥执行一次--有缓存
+                // 计算属性会随着依赖的数据的改变,而进行重新计算
+                add() {
+                    console.log('computed')
+                    return this.firstName + '' + this.lastName
+                }
+            },
+            methods: {
+
+                fullName() {
+                    console.log('methods')
+                    return this.firstName + this.lastName
+                },
+                change() {
+                    this.firstName = 'emmm'
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>
