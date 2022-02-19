@@ -12,6 +12,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 
 module.exports = {
+
+    // 色湖之模式
+    // development 开发阶段, 会设置development
+    // production 准备打包上线的时候
+    mode: 'development',
+
+    // 设置 source-map , 建立js映射文件, 方便调试代码和错误
+    devtool: 'source-map',
     entry: "./src/index.js",
     output: {
         path: path.resolve(__dirname, './dist'),
