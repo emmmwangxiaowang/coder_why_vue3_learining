@@ -67,23 +67,44 @@ module.exports = {
         // css sass less 文件改变了不光需要重新打包, 在这之前还要重新'挂载'到内存
         // webpack ./src/css/* -o ./dist
         rules: [{
-            test: /\.css$/i,
-            use: ['style-loader', 'css-loader', 'postcss-loader']
-        }, {
-            test: /\.less$/i,
-            use: ['style-loader', 'css-loader', 'less-loader']
-        }, {
-            test: /\.scss$/i,
-            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-        }, {
-            test: /\.(jpg|png|gif|svg)$/i,
-            type: 'asset/resource'
-        }, {
-            test: /\.(eot|ttf|woff2?)/,
-            type: 'asset/resource',
-            generator: {
-                filename: 'iconFont/[hash:8]_[name][ext][query]'
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader', 'postcss-loader']
+            }, {
+                test: /\.less$/i,
+                use: ['style-loader', 'css-loader', 'less-loader']
+            }, {
+                test: /\.scss$/i,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+            }, {
+                test: /\.(jpg|png|gif|svg)$/i,
+                type: 'asset/resource'
+            }, {
+                test: /\.(eot|ttf|woff2?)/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'iconFont/[hash:8]_[name][ext][query]'
+                }
+            },
+            //{
+            // test: /\.js$/,
+            // use: {
+            //     loader: 'babel-loader',
+            //     options: {
+            //         // plugins: [
+            //         //     '@babel/plugin-transform-arrow-functions',
+            //         //     '@babel/plugin-transform-block-scoping'
+            //         // ]
+
+            //         presets: [
+            //             '@babel/preset-env'
+            //         ]
+            //     }
+            // }
+            // }
+            {
+                test: /\.js$/,
+                use: 'babel-loader'
             }
-        }],
+        ],
     }
 }
