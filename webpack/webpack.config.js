@@ -12,7 +12,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader/dist/index')
 
 module.exports = {
-
+    target: 'web',
     // 色湖之模式
     // development 开发阶段, 会设置development
     // production 准备打包上线的时候
@@ -21,10 +21,23 @@ module.exports = {
     // 设置 source-map , 建立js映射文件, 方便调试代码和错误
     devtool: 'source-map',
     entry: "./src/index.js",
+    // 监听依赖变化, 有变化就自动编译
+    // watch:true,
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: 'bundle.js',
         assetModuleFilename: 'img/[hash:8][name][ext][query]'
+    },
+    devServer: {
+        open: true,
+        port: 8088,
+        static: {
+            directory: path.resolve(__dirname, './public')
+        },
+        // 开启下载压缩 --gzip
+        compress: true
+            // 默认开启热更新的
+            // hot: true
     },
     plugins: [
         new MiniCssExtractPlugin({

@@ -16,7 +16,7 @@ bgDivEl.className = 'image-bg'
 // 设置img元素的src
 const imgEl = document.createElement('img')
 imgEl.src = src
-
+console.log('就是就是');
 // i元素
 const iEl = document.createElement('i')
 iEl.className = 'iconfont icon-chihaochide'
