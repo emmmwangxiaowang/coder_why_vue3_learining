@@ -28,16 +28,36 @@ module.exports = {
         filename: 'bundle.js',
         assetModuleFilename: 'img/[hash:8][name][ext][query]'
     },
+    resolve: {
+        // 这里写了扩展名后 引入的文件就不用写扩展名了
+        extensions: [
+            '.js', '.json'
+        ],
+        alias: {
+            // "js": path.resolve(__dirname, './src/js')
+            "@": path.resolve(__dirname, './src')
+        }
+    },
     devServer: {
         open: true,
-        port: 8088,
+        // port: 8088,
         static: {
             directory: path.resolve(__dirname, './public')
         },
         // 开启下载压缩 --gzip
-        compress: true
-            // 默认开启热更新的
-            // hot: true
+        compress: true,
+        // 默认开启热更新的
+        // hot: true
+
+        // websocket
+        webSocketServer: 'ws',
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8000',
+                pathRewrite: { '^/api': '' },
+            },
+        },
+
     },
     plugins: [
         new MiniCssExtractPlugin({
