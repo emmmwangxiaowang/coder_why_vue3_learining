@@ -9,7 +9,7 @@ const { dirname } = require('path');
 const { DefinePlugin } = require('webpack')
 
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-
+const { VueLoaderPlugin } = require('vue-loader/dist/index')
 
 module.exports = {
 
@@ -49,7 +49,11 @@ module.exports = {
                 removeComments: true
             }
         }), new DefinePlugin({
-            BASE_URL: "'./'"
+            BASE_URL: "'./'",
+            // 开启 对 options_api 的支持
+            __VUE_OPTIONS_API__: true,
+            // 关闭对调试工具 devTools 的支持
+            __VUE_PROD_DEVTOOLS__: false
         }), new CopyWebpackPlugin({
             patterns: [{
                 from: 'public',
@@ -61,7 +65,7 @@ module.exports = {
                     ]
                 }
             }]
-        })
+        }), new VueLoaderPlugin()
     ],
     module: {
         // css sass less 文件改变了不光需要重新打包, 在这之前还要重新'挂载'到内存
@@ -77,7 +81,12 @@ module.exports = {
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             }, {
                 test: /\.(jpg|png|gif|svg)$/i,
-                type: 'asset/resource'
+                type: 'asset/resource',
+                parser: {
+                    dataUrlCondition: {
+                        maxSize: 10 * 1024
+                    }
+                }
             }, {
                 test: /\.(eot|ttf|woff2?)/,
                 type: 'asset/resource',
@@ -104,6 +113,9 @@ module.exports = {
             {
                 test: /\.js$/,
                 use: 'babel-loader'
+            }, {
+                test: /\.vue$/,
+                use: 'vue-loader'
             }
         ],
     }
