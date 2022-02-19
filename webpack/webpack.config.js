@@ -8,7 +8,8 @@ module.exports = {
     entry: "./src/index.js",
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        assetModuleFilename: 'img/[hash:8][name][ext][query]'
     },
     plugins: [
         new MiniCssExtractPlugin({
@@ -33,6 +34,15 @@ module.exports = {
         }, {
             test: /\.scss$/i,
             use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        }, {
+            test: /\.(jpg|png|gif|svg)$/i,
+            type: 'asset/resource'
+        }, {
+            test: /\.(eot|ttf|woff2?)/,
+            type: 'asset/resource',
+            generator: {
+                filename: 'iconFont/[hash:8]_[name][ext][query]'
+            }
         }],
     }
 }

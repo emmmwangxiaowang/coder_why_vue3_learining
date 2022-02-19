@@ -12,6 +12,7 @@
     "devDependencies": {
         "autoprefixer": "^8.0.0",
         "css-loader": "^6.6.0",
+        "file-loader": "^6.2.0",
         "less-loader": "^10.2.0",
         "lessc": "^1.0.2",
         "mini-css-extract-plugin": "^2.5.3",
