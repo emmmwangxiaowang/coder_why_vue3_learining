@@ -7,13 +7,13 @@
 <script>
     export default {
         data(){
-            return{
-                message:'Home 组件'
+            return {
+                message:'Hello Category'
             }
         }
     }
 </script>
 
-<style lang="sass" scoped>
+<style scoped>
 
 </style>

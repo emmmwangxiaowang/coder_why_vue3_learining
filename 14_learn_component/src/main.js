@@ -9,4 +9,4 @@ import ("./12_异步组件的使用/utils/math").then(res => {
 
 createApp(App).mount('#app');
 
-console.log(sum(1, 2))
+// console.log(sum(1, 2))
