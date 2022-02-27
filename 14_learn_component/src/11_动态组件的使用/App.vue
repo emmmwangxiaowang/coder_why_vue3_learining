@@ -15,7 +15,17 @@
 
         <!-- 2. 通过动态组件来实现 -->
 
-        <component :is="currentTab"></component>
+        <!-- 在 age 那里 用 : 进行绑定, 20 会被识别承诺 Number 类型 不然就是 string -->
+        <!-- keep-alive 保持组件缓存 -->
+        <!-- 如果所有页面都需要缓存,就不需要设置 include 属性, -->
+        <!-- 如果是某几个页面需要缓存,就在需要缓存的几个页面中添加name属性 并在 keep-alive中 添加 include 属性 -->
+        <keep-alive include="Home,About">
+            <component :is="currentTab"
+                name='wang'
+                :age='20'
+                @pageclick='pageclick'></component>
+        </keep-alive>
+        
     </div>
 </template>
 
@@ -35,6 +45,9 @@ import Category from './pages/Category.vue'
             itemClick(item){
                 console.log(item);
                 this.currentTab=item
+            },
+            pageClick(){
+                console.log('page内部发生了点击')
             }
         }
     }
