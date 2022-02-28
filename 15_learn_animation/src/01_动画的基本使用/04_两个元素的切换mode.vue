@@ -8,21 +8,15 @@
         <!-- mode 有两个模式 in-out   out-in -->
         <!-- in-out 先出现, 再退出, 会出现多个元素 -->
         <!-- out-in 先退出,再出现 仅出现一个元素-->
-        <transition name="wang" mode="out-in" appear="true">
-            <component :is="isShow ? 'home' : 'about'"></component>
+        <transition name="wang" mode="out-in">
+            <h2 class="title" v-if="isShow">hello world</h2>
+            <h2 class="title" v-else>hello world</h2>
         </transition>
     </div>
 </template>
 
 <script>
-    import Home from './pages/Home.vue'
-    import About from './pages/About.vue'
-
     export default {
-        components:{
-            Home,
-            About
-        },
         data(){
             return {
                 isShow:true

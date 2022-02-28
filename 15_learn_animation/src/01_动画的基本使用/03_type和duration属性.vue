@@ -5,24 +5,20 @@
         </div>
         
 
-        <!-- mode 有两个模式 in-out   out-in -->
-        <!-- in-out 先出现, 再退出, 会出现多个元素 -->
-        <!-- out-in 先退出,再出现 仅出现一个元素-->
-        <transition name="wang" mode="out-in" appear="true">
-            <component :is="isShow ? 'home' : 'about'"></component>
+        <!-- transition 组件会自动在合适的时候将对应的类 添加/删除 到组件中 -->
+
+        <!-- 当 transition 和 animation 的时间不一样的时候, 在 transition 的属性里面加一个type属性 设置为 时间较长的一个 -->
+        <!-- :duration 显式指定动画时间 可以设置两种类型的值 优先级大于在css中设置的时间-->
+        <!-- number 类型: 同时设置进入和离开的过度时间 -->
+        <!-- object 类型: 分别设置进入和离开的过度时间 {enter:800,leave:500} -->
+        <transition name="wang" type="transition" :duration="1000">
+            <h2 class="title" v-if="isShow">hello world</h2>
         </transition>
     </div>
 </template>
 
 <script>
-    import Home from './pages/Home.vue'
-    import About from './pages/About.vue'
-
     export default {
-        components:{
-            Home,
-            About
-        },
         data(){
             return {
                 isShow:true
@@ -55,7 +51,7 @@
 
     .wang-enter-active,
     .wang-leave-active{
-        transition: opacity 1s ease
+        transition: opacity 2s ease
     }
 
     .wang-enter-active
