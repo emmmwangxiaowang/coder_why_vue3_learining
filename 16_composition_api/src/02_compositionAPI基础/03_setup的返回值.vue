@@ -2,13 +2,12 @@
     <div>
         <h2>{{message}}</h2>
         <h2>{{title}}</h2>
-        <h2>当前计数:{{state.counter}}</h2>
+        <h2>当前计数:{{counter}}</h2>
         <button @click="increment">+1</button>
     </div>
 </template>
 
 <script>
-import {reactive} from 'vue'
     export default {
         props:{
             message:{
@@ -26,20 +25,16 @@ import {reactive} from 'vue'
         // {attrs,slots,emit}  对 context 进行结构的写法
         setup() {
           
-            // optionsAPI 使用 reactive 来提供响应式
-            const state= reactive({
-                counter:100,
-                title:'hello'
-            })
+            let counter=100;
 
             // 局部函数
             const increment=()=>{
-                state.counter++;
-                console.log(state.counter);
-                console.log(state.title);
+                counter++;
+                console.log(counter);
             }
             return {
-                 state,
+                 title:"hello home"
+                 ,counter,
                  increment
             }
         }
