@@ -1,6 +1,9 @@
 <template>
     <div>
         <h2>{{message}}</h2>
+        <h2>{{title}}</h2>
+        <h2>当前计数:{{counter}}</h2>
+        <button @click="increment">+1</button>
     </div>
 </template>
 
@@ -20,11 +23,20 @@
         //     console.log(context.emit);
         // },
         // {attrs,slots,emit}  对 context 进行结构的写法
-        setup(props,{attrs,slots,emit}) {
-            console.log(props.message);
-            console.log(attrs.id);
-            console.log(slots);
-            console.log(emit);
+        setup() {
+          
+            let counter=100;
+
+            // 局部函数
+            const increment=()=>{
+                counter++;
+                console.log(counter);
+            }
+            return {
+                 title:"hello home"
+                 ,counter,
+                 increment
+            }
         }
     }
 </script>
