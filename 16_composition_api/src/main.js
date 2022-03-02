@@ -1,17 +1,17 @@
 import { createApp } from 'vue'
-import App from './01_mixin和extends/App.vue'
+import App from './02_compositionAPI基础/App.vue'
 
 const app = createApp(App);
-app.mixin({
-    data() {
-        return {}
-    },
-    methods: {
+// app.mixin({
+//     data() {
+//         return {}
+//     },
+//     methods: {
 
-    },
-    created() {
-        console.log('全局');
-    }
-})
+//     },
+//     created() {
+//         console.log('全局');
+//     }
+// })
 
 app.mount('#app')
