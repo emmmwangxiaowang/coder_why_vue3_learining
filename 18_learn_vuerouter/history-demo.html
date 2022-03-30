@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <a href="/home">home</a>
+        <a href="/about">about</a>
+
+        <div class="content"></div>
+    </div>
+
+
+
+    <script>
+        const contentEl = document.querySelector(".content")
+
+        const aEls = document.getElementsByTagName("a");
+        for (let aEl of aEls) {
+            aEl.addEventListener("click", e => {
+                e.preventDefault();
+                const href = aEl.getAttribute("href");
+                // 类似于栈的存储模式
+                history.pushState({}, "", href);
+                // history.replaceState({}, "", href)
+
+                switch (location.pathname) {
+                    case "/home":
+                        contentEl.innerHTML = "Home";
+                        break;
+                    case "/about":
+                        contentEl.innerHTML = "About";
+                        break;
+                    default:
+                        contentEl.innerHTML = "default";
+                }
+            })
+
+        }
+    </script>
+</body>
+
+</html>
